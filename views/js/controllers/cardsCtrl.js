@@ -4,7 +4,7 @@
 
 app.controller('cardsCtrl',function($rootScope, $document,$scope,$timeout,$http,$mdColors,$mdDialog,$timeout, $q, $log,PatientBuffer,Animations) {
     var self = this;
-    //$scope.patientserv=PatientBuffer;
+    $scope.patientserv=PatientBuffer;
     self.PatientBufferServ=PatientBuffer;
     PatientBuffer.refreshCards();
     self.cardAnim = Animations;

@@ -18,15 +18,16 @@
         background-color: rgba(0, 0, 0, 0.02)
       }
       .md-chips md-chip{
+
          height: 33px !important;
          padding: 0 0px 0 18px !important;
-        -webkit-animation-duration: 1s;
-         animation-duration: 1s;
-        -webkit-animation-fill-mode: backwards;
-         animation-fill-mode: both;
-        -webkit-animation-name: fadeIn;
-         animation-name: fadeIn;
+        -webkit-animation: fadein 0.5s;
+        animation: fadein 0.5s;
       }
+      @keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+    }
       .myChipButton{
     margin: 0px !important;
     height: 0px !important;
@@ -217,14 +218,10 @@
           <md-progress-linear  md-mode="indeterminate"></md-progress-linear>
       </div>
   </div>
-
-<div ng-if="pserv.selectedFiles" flex="80" class="md-padding"  flex-gt-xs="70">
-  <div>
-    Selected documents: <br>
-    </div>
+<div ng-if="pserv.selectedFiles" flex="80" class="md-padding" style="margin-top:50px"  flex-gt-xs="70">
+ 
   <md-chips ng-model="pserv.selectedFiles" 
-          readonly="true" md-on-append="pserv.pulkit()" md-on-remove="animServ.fadeElementOut()">
-         
+          readonly="true" md-on-append="pserv.pulkit()" md-on-remove="pserv.pulkit()">
       <md-chip-template >
         <span >
           {{$chip.name}}

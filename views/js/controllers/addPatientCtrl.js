@@ -11,6 +11,7 @@ app.controller('addPatientCtrl',function($rootScope,$http, $document,$scope,$mdC
 
 
 
+
       $scope.close=function(){
             $mdDialog.hide();
       };
@@ -30,6 +31,7 @@ app.controller('addPatientCtrl',function($rootScope,$http, $document,$scope,$mdC
                         .then(function(res){},function(err){});
               },
              function(err){
+                   
              })
              $mdDialog.hide();
       };

@@ -20,7 +20,18 @@
     {
         visibility: hidden !important;
     }
-   
+   md-toast {
+z-index: 10000 !important;
+}
+.md-fixed-top {
+position: fixed !important;
+top: 66px !important; // size of my navbar + 16px
+}
+
+.md-fixed-right {
+position: fixed !important;
+right: 16px !important;
+}
     </style>
         
 </head> 
@@ -92,6 +103,9 @@
            </md-button> 
   
 </md-toolbar>
+
+
+
 <md-button  data-ng-click="ctrl.addPatientInfo($event)" class="md-fab md-fab-bottom-right" style="position: fixed !important"   aria-label="add new patient" >           
             <md-icon >add</md-icon>
      </md-button>
@@ -114,6 +128,7 @@
             <span class="md-subhead" flex>gender : <b>{{card.gender}}</b></span>
             <span class="md-subhead" style="word-wrap: break-word" >Diseases : <b>{{card.symptoms.info[0]}}</b></span>
           </md-card-title-text>
+          
           <md-card-title-media hide-xs  flex="40" layout="column" layout-align="start end">
             <div class="md-media-md card-media" ><img src="./images/{{card.gender}}-avatar.png"></div>
           </md-card-title-media>
