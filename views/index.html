@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html data-ng-app="myApp" data-ng-controller="cardsCtrl as ctrl">
+<head >
+    <link type="text/css" rel="stylesheet" href="./node_modules/angular-material/angular-material.css">
+    <link type="text/css" rel="stylesheet" href="./node_modules/angular-timeline/dist/angular-timeline.css"/>
+    <link type="text/css" rel="stylesheet" href="./node_modules/angular-timeline/dist/angular-timeline-animations.css"/>
+    <link type="text/css" rel="stylesheet" href="./node_modules/animate.css/animate.css"/>
+    <link type="text/css" rel="stylesheet" href="./css/scrollbars.css"> 
+    <link type="text/css" rel="stylesheet" href="./css/autocomplete.css"> 
+    <link type="text/css" rel="stylesheet" href="./css/card.css"> 
+    <link type="text/css" rel="stylesheet" href="./css/disabled.css"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
+    
+    <style type="text/css">
+    md-toolbar{
+        padding-left: 20px;
+    }
+    .animateHidden
+    {
+        visibility: hidden !important;
+    }
+   
+    </style>
+        
+</head> 
+    <script src="./node_modules/angular/angular.js"></script>
+    <script src="./node_modules/angular-animate/angular-animate.js"></script>
+    <script src="./node_modules/angular-aria/angular-aria.js"></script>
+    <script src="./node_modules/angular-material/angular-material.js"></script>
+    <script src="./node_modules/angular-messages/angular-messages.js"></script>
+    <script src="./node_modules/angular-scroll-animate/dist/angular-scroll-animate.js"></script>
+    <script src="./node_modules/angular-timeline/dist/angular-timeline.js"></script>
+    <script src="./node_modules/ng-file-upload/dist/ng-file-upload.js"></script>
+
+    
+    <script>
+        var app=angular.module('myApp',['ngMaterial','ngAnimate','ngAria','ngMessages','ngFileUpload','angular-scroll-animate','angular-timeline','PatientBufferModule','AnimationsModule']);
+    </script>
+    <script src="./js/controllers/cardsCtrl.js"></script>
+    <script src="./js/controllers/openPatientCtrl.js"></script>
+    <script src="./js/controllers/addPatientCtrl.js"></script>
+    <script src="./js/services/PatientBuffer.js"></script>
+    <script src="./js/services/Animations.js"></script>
+    <script src="./js/filters/relativeTime.js"></script>
+    <script src="./js/filters/unique.js"></script>
+
+
+<body  ng-init="ctrl.PatientBufferServ.refreshCards()">
+   
+<div  layout="column" style="max-height:88%"  >
+        
+     
+     
+<md-toolbar class="md-medium-tall"  md-scroll-shrink=false layout="row" layout-align="start center" >
+
+         <h4 layout-align="center" layout="row" hide-xs flex="33" >Homeopathy labs </h4>
+         <div   flex-xs="85" flex="40"  layout-align="start center"  >
+      
+   <md-autocomplete    
+          md-colors="{background: 'primary-400' }"
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Search for patients visited so far !">
+      
+      <md-item-template>
+          <md-icon style="font-size: 21px ;align-content: center">trending_up</md-icon>
+              <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">
+                  {{item.display}}
+            </span>
+      </md-item-template>
+
+      <md-not-found>
+          <a ng-click="ctrl.newState(ctrl.searchText)">
+             No patients matching "{{ctrl.searchText}}" were recently searched.
+          </a>
+      </md-not-found>
+    </md-autocomplete>
+      
+         </div>
+
+           <md-button class="md-fab md-mini" aria-label="search by name">
+               <md-icon>search</md-icon>
+           </md-button> 
+  
+</md-toolbar>
+<md-button  data-ng-click="ctrl.addPatientInfo($event)" class="md-fab md-fab-bottom-right" style="position: fixed !important"   aria-label="add new patient" >           
+            <md-icon >add</md-icon>
+     </md-button>
+      
+<md-content id="PatientCardsWindow">
+<div flex style="margin: 10%; margin-top: 50px;margin-bottom: 10px;padding-bottom:100px;overflow: hidden">
+<div  layout="row" layout-align="center" layout-wrap>
+    
+<div flex="100" flex-gt-sm="50"  flex-gt-md="33" data-ng-repeat="card in values=(ctrl.PatientBufferServ.PatientCards | filter: ctrl.searchText)" >
+    <div >
+        
+    <md-card  bind-scroll-to="#PatientCardsWindow"  when-visible="ctrl.cardAnim.animateCardIn" when-not-visible="ctrl.cardAnim.animateCardOut">
+        <md-card-title>
+            <div layout="row" layout-fill>
+                
+          <md-card-title-text flex-xs="100" flex="60" layout="column" layout-fill>
+            <span class="md-headline"  flex id="name">{{card.name}}</span>
+            <span class="md-subhead" flex>Latest visit : <b>{{card.prescription.date | relativeTime }}</b></span>
+            <span class="md-subhead" flex>Age : <b>{{card.age}}</b></span>
+            <span class="md-subhead" flex>gender : <b>{{card.gender}}</b></span>
+            <span class="md-subhead" style="word-wrap: break-word" >Diseases : <b>{{card.symptoms.info[0]}}</b></span>
+          </md-card-title-text>
+          <md-card-title-media hide-xs  flex="40" layout="column" layout-align="start end">
+            <div class="md-media-md card-media" ><img src="./images/{{card.gender}}-avatar.png"></div>
+          </md-card-title-media>
+            </div>
+        </md-card-title>
+        <md-content flex class="md-primary md-whiteframe-1dp">
+        <md-card-actions class=" md-primary"  layout="row" layout-align="end end">
+            <div  flex layout="row" layout-align="end end">
+            <md-button class="md-icon-button " data-ng-click="ctrl.deletePatient($event,card._id,card.name)"><md-icon aria-label="open" class="md-24">cancel</md-icon></md-button>
+            
+          <md-button class="md-icon-button " data-ng-click="ctrl.openPatientInfo($event,card.name,card._id)"><md-icon aria-label="open" class="md-24">open_in_new</md-icon></md-button>
+            </div>
+        </md-card-actions>
+        </md-content>
+      </md-card>
+
+
+
+      
+    </div>
+</div>
+
+
+<div style="margin: 20vh" ng-if="!values">
+        <div layout="row"   layout-align="space-around space-around">
+                          <md-progress-circular md-mode="indeterminate"   color="primary"></md-progress-circular>
+                    </div>
+        </div>
+<div style="margin: 10%" class="md-title" ng-if="values==0">
+    <md-card  bind-scroll-to="#PatientCardsWindow"  when-visible="ctrl.cardAnim.animateCardIn" when-not-visible="ctrl.cardAnim.animateCardOut">
+        <md-card-title>
+          <div class="md-padding" style="line-height: 1.5">
+        Soory, No Patient found with name "{{ctrl.searchText}}"
+          </div>
+        </md-card-title>
+    </md-card>
+        </div>
+</div>
+</div>
+</md-content>
+
+</div>
+   
+</body>
+</html>

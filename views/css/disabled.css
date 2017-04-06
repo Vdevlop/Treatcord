@@ -1,0 +1,19 @@
+[disabled] md-input-container .md-input{
+    background-image: none !important;
+    color:#000;
+}
+ md-select[disabled] .md-select-icon{
+     display: none !important;
+ }
+ md-select[disabled]{
+     
+     display: block;
+ } 
+ md-select[disabled] .md-select-value{
+        color:#000;
+        background-image: none !important;
+ }
+
+ md-chips .md-chips{
+     box-shadow: none !important;
+ }

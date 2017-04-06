@@ -1,0 +1,52 @@
+
+<md-dialog  flex layout="column">
+     <div  style="margin-top: 12px">
+     </div>
+     
+     <style>
+ #mdform md-card{
+      padding: 1% !important;
+      padding-top: 0px !important;
+      padding-bottom: 0px !important
+  }
+  #mdform md-headline{
+    padding-bottom: 0px;
+  }
+    md-tabs{
+      min-height: 71vh !important;
+    }
+  </style>
+  
+<md-tabs flex  md-selected="1" md-border-bottom>
+  
+      <md-tab  ng-click="close()"  >
+          <md-icon class="md-18">keyboard_backspace</md-icon>
+      </md-tab>
+
+  <md-tab label="Personals">
+    
+        <md-content flex style="padding: 10%; padding-bottom: 100px;padding-top: 50px;overflow: hidden;min-height: 79vh" >
+                <div data-ng-include="'forms/assets/personals.tmpl'"></div>
+        </md-content>
+  </md-tab> 
+  <md-tab label="Symptoms">
+        <md-content id="addPatientCtrl" style="padding: 13%; padding-bottom: 100px;padding-top: 50px;overflow: hidden;min-height: 79vh">
+                <div data-ng-include="'forms/assets/symptoms.tmpl'"></div>
+        </md-content>
+  </md-tab>    
+  <md-tab  label="Prescription">
+        <md-content id="addPatientCtrl" style="padding: 13%; padding-bottom: 100px;padding-top: 50px;overflow: hidden;min-height: 79vh">
+                <div data-ng-include="'forms/assets/prescriptions.tmpl'"></div>
+        </md-content>
+  </md-tab>
+</md-tabs>
+
+      <div style="margin-top: 2px">
+      </div>
+<div md-whiteframe="3" style="z-index: 2000">
+  <md-dialog-actions  md-fab="bottom-right" >
+    <button md-button data-ng-click="create($event)" data-ng-disabled="pserv.mdForm.$invalid">Create</button>
+  </md-dialog-actions>
+</div>
+  
+</md-dialog>
