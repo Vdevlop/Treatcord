@@ -20,18 +20,12 @@
     {
         visibility: hidden !important;
     }
-   md-toast {
-z-index: 10000 !important;
-}
-.md-fixed-top {
-position: fixed !important;
-top: 66px !important; // size of my navbar + 16px
-}
-
-.md-fixed-right {
-position: fixed !important;
-right: 16px !important;
-}
+    md-toast {
+                z-index: 1 !important;
+    }
+    md-toast.md-top {
+                top: calc(10% + 8px);
+    }
     </style>
         
 </head> 
@@ -111,7 +105,7 @@ right: 16px !important;
      </md-button>
       
 <md-content id="PatientCardsWindow">
-<div flex style="margin: 10%; margin-top: 50px;margin-bottom: 10px;padding-bottom:100px;overflow: hidden">
+<div flex style="margin: 10%; margin-top: 5%;margin-bottom: 10px;padding-bottom:100px;overflow: hidden">
 <div  layout="row" layout-align="center" layout-wrap>
     
 <div flex="100" flex-gt-sm="50"  flex-gt-md="33" data-ng-repeat="card in values=(ctrl.PatientBufferServ.PatientCards | filter: ctrl.searchText)" >

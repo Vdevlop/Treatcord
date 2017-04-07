@@ -169,7 +169,7 @@ var PatientBufferModule = angular.module('PatientBufferModule',[])
 
       self.sendMultipart=function(qstring,_id)
       {
-        alert(JSON.stringify( self.selectedFiles));
+        
          var myFormData={
          'name':self.name,
          'age':self.age,
@@ -182,7 +182,7 @@ var PatientBufferModule = angular.module('PatientBufferModule',[])
          'comments':self.comments,
          'attachments':self.selectedFiles
          };
-         //alert(Upload.isFile( self.selectedFiles[0]));
+         //
          if(qstring=='add')
          return Upload.upload({
             method:'POST',
@@ -200,6 +200,6 @@ var PatientBufferModule = angular.module('PatientBufferModule',[])
           
          
       }
-      self.pulkit=function(){alert('pulkit');};
+     
 
 });

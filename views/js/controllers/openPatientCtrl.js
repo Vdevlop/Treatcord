@@ -51,8 +51,9 @@ app.controller('openPatientCtrl',function($rootScope,$http, $document,$scope,$md
                         $mdToast.show(
                         {
                             template:'<md-toast>'+
-                                          '<div class="md-toast-content">'+
-                                           '     ATTACHMENTS SAVED '+
+                                          '<div style="color:#bbff90" class="md-toast-content">'+
+                                           '     SUCCESSFULLY SAVED '+
+                                           '<md-icon style="margin-right:0px;color:#bbff90">done</md-icon>'+
                                           '</div>'+
                                       '</md-toast>',
 
@@ -65,8 +66,9 @@ app.controller('openPatientCtrl',function($rootScope,$http, $document,$scope,$md
                         $mdToast.show(
                       {
                             template:'<md-toast>'+
-                                          '<div style="color:rgb(255, 142, 142) " class=" md-warn md-toast-content">'+
-                                           '     ATTACHMENTS REJECTED '+
+                                          '<div style="color:#ffba73 " class=" md-warn md-toast-content">'+
+                                           '     SAVE REJECTED '+
+                                           '<md-icon style="margin-right:0px;color:#ffba73">close</md-icon>'+
                                           '</div>'+
                                       '</md-toast>',
 
