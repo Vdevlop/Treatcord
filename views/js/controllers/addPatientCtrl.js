@@ -38,6 +38,7 @@ app.controller('addPatientCtrl',function($rootScope,$http, $document,$scope,$mdC
                             position:"top right"
                       }
                         );
+                        
 
               $scope.pserv
               .sendMultipart('add')
@@ -57,11 +58,16 @@ app.controller('addPatientCtrl',function($rootScope,$http, $document,$scope,$mdC
                             position:"top right"
                         }
                         );
-                    $scope.pserv.sendNewSymptoms(response.data._id)
-                        .then(function(res){},function(err){});
+                       
+                    
                     //if(!pserv.NewPrescriptionInfo)
                     $scope.pserv.sendNewPrescription(response.data._id)
-                        .then(function(res){},function(err){});
+                        .then(function(res){
+                              $scope.pserv.sendNewSymptoms(response.data._id)
+                        .then(function(res){
+                               PatientBuffer.refreshCards();
+                        },function(err){});
+                        },function(err){});
               },
              function(err){
                         $mdToast.show(

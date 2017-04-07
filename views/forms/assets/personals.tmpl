@@ -36,11 +36,16 @@
     width: 36px !important;
   
       }
+      fieldset{
+        border: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
 
        </style>
 <ng-form name="pserv.mdForm" >
   
-  <fieldset style="border: 0px" ng-disabled="!pserv.editMode">
+  <fieldset ng-disabled="!pserv.editMode">
   <md-card  flex   when-visible="animServ.FormAnimateElementIn" when-not-visible="animServ.FormAnimateElementOut">
     <md-card-content >
 
@@ -165,7 +170,7 @@
   </md-card-content>
   </md-card>
 
-<md-card    when-visible="animServ.FormAnimateElementIn" when-not-visible="animServ.FormAnimateElementOut">
+<md-card style="margin-bottom: 0px"    when-visible="animServ.FormAnimateElementIn" when-not-visible="animServ.FormAnimateElementOut">
     <md-card-content>
       <md-card-title>
     <md-card-title-text>
@@ -185,7 +190,7 @@
 
 
 </fieldset>
-<fieldset style="border: 0px">
+<fieldset >
   <md-card    when-visible="animServ.FormAnimateElementIn" when-not-visible="animServ.FormAnimateElementOut">
     <md-card-content>
       <md-card-title>

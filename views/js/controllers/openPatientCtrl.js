@@ -62,6 +62,7 @@ app.controller('openPatientCtrl',function($rootScope,$http, $document,$scope,$md
                             position:"top right"
                         }
                         );
+                        PatientBuffer.refreshCards();
                   },function(err){
                         $mdToast.show(
                       {
@@ -83,6 +84,7 @@ app.controller('openPatientCtrl',function($rootScope,$http, $document,$scope,$md
                         console.log(PatientBuffer.progress);
                         if(PatientBuffer.progress>99)
                         {
+
                               $mdToast.hide();
                         }
                   });

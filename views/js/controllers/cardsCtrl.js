@@ -156,7 +156,6 @@ app.controller('cardsCtrl',function($rootScope, $document,$scope,$timeout,$http,
           
         }).finally(function(){
               PatientBuffer.loading=true;
-              PatientBuffer.refreshCards();
               PatientBuffer.clearCache();
         });
         
@@ -184,7 +183,7 @@ app.controller('cardsCtrl',function($rootScope, $document,$scope,$timeout,$http,
         })
         .finally(function(){
          
-              PatientBuffer.refreshCards();
+              
               PatientBuffer.clearCache();
         });
       };
