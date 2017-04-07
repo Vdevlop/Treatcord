@@ -2,7 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
-var fs = require('fs');
+var fs = require('fs-extra');
 var mime = require('mime');
 var path = require('path');
 //------------------------------configuration--------------------------------//
@@ -11,7 +11,6 @@ var dbaccess=require('../config/dbaccess.js');
 var db = dbaccess.Datastore;
 var upload_path=dbaccess.profile_pic_path;
 //---------------------------------------------------------------------------//
-
 
 router.post('/:id/update/followups', function(req, res, next) {
   var ide=String(req.params.id);
@@ -55,9 +54,9 @@ router.post('/:id/update/personals',fileupload.any(),
   var index=0;
   req.files.forEach(function(file){
     index++;
-    var final_dest=upload_path + ide +'('+ index + ')' +"."+mime.extension(file.mimetype);
-    fs.renameSync(file.path, final_dest);
-    _attachments.push(path.parse(final_dest));
+    var final_dest=upload_path + ide +'\\'+'('+ index + ')'+file.originalname;
+    fs.move(file.path, final_dest,function(err){console.log(err)});
+    _attachments.push({path:path.parse(final_dest),'mimetype':file.mimetype,'size':file.size});
     
   });
   //----------------------------------------------//

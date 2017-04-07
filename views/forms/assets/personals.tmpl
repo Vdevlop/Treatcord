@@ -11,7 +11,7 @@
         height: 300px;
         background-color: {{mdColors.getThemeColor('primary-100-0.01')}}
       }
-      .dragOverBox{
+       .dragOverBox{
        
         outline-color: rgba(0, 0, 0, 0.1);
         color: rgba(0, 0, 0, 0.35);
@@ -205,11 +205,11 @@
       </div>
       
       <div ng-repeat="file in pserv.attachments">
-        <button md-button ng-click="pserv.openExt(file)">{{file.name}}</button><br>
+        <button md-button ng-click="pserv.openExt(file)">{{file.path.base}}</button><br>
       </div>
   <div ng-if="pserv.editMode">
-  <div flex layout="row" layout-align="center center">
-  <div ngf-drop flex="90" name="attachments" layout="row" ng-model="pserv.selectedFiles" ngf-multiple="true" layout-align="center center" class="dragBox"  ngf-drag-over-class="'dragOverBox'" flex-gt-xs="75">
+  <div flex layout="row" flex layout-align="center center">
+  <div ngf-drop flex="100" name="attachments" layout="row" ng-model="pserv.selectedFiles" ngf-multiple="true" layout-align="center center" class="dragBox"  ngf-drag-over-class="'dragOverBox'" flex-gt-xs="85">
 
     <div  style="text-align: center;align-items: center">
         <md-icon class="md-padding" style="color:inherit">system_update_alt</md-icon><br>
@@ -224,7 +224,7 @@
           <md-progress-linear  md-mode="indeterminate"></md-progress-linear>
       </div>
   </div>-->
-<div ng-if="pserv.selectedFiles" flex="80" class="md-padding" style="margin-top:50px"  flex-gt-xs="70">
+<div ng-if="pserv.selectedFiles" flex="80" class="md-padding" style="margin-top:20px"  flex-gt-xs="70">
  
   <md-chips ng-model="pserv.selectedFiles" 
           readonly="true" md-on-append="pserv.pulkit()" md-on-remove="pserv.pulkit()">

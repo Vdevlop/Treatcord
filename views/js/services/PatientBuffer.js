@@ -26,12 +26,12 @@ var PatientBufferModule = angular.module('PatientBufferModule',[])
       self.attachmentsIsEmpty=function(){
         return (JSON.stringify(self.attachments)=='[]');
       }
-      self.openExt=function(path)
+      self.openExt=function(file)
       {
-        console.log(path);
-        //var kv=(JSON.stringify( path));
+        //console.log(file);
+        //alert(JSON.stringify( file));
         //console.log(JSON.stringify( kv));
-          remote.shell.openExternal(path.dir+'\\'+path.base);
+          remote.shell.openExternal(file.path.dir+'\\'+file.path.base);
       }
       self.states=null;
       
