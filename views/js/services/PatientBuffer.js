@@ -23,7 +23,9 @@ var PatientBufferModule = angular.module('PatientBufferModule',[])
         
 
       }
-      
+      self.attachmentsIsEmpty=function(){
+        return (JSON.stringify(self.attachments)=='[]');
+      }
       self.openExt=function(path)
       {
         console.log(path);

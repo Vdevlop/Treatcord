@@ -191,7 +191,8 @@
 
 </fieldset>
 <fieldset >
-  <md-card    when-visible="animServ.FormAnimateElementIn" when-not-visible="animServ.FormAnimateElementOut">
+  <!--button ng-click="">test</button-->
+  <md-card style="padding-bottom: 5%"    when-visible="animServ.FormAnimateElementIn" when-not-visible="animServ.FormAnimateElementOut">
     <md-card-content>
       <md-card-title>
     <md-card-title-text>
@@ -199,7 +200,7 @@
     </md-card-title-text>
   </md-card-title>
   <div class="md-padding">
-      <div  ng-if="(pserv.attachments==undefined)&&!pserv.editMode">
+      <div flex style="text-align: center;" ng-if="pserv.attachmentsIsEmpty()&&!pserv.editMode">
           No documents attached yet
       </div>
       
