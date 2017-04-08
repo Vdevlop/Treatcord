@@ -10,6 +10,7 @@
         color: rgba(0, 0, 0, 0.7);
         height: 300px;
         background-color: {{mdColors.getThemeColor('primary-100-0.01')}}
+        
       }
        .dragOverBox{
        
@@ -41,6 +42,15 @@
         padding-top: 0px;
         padding-bottom: 0px;
       }
+      .md-avatar {
+
+    width: 48px !important;
+    height: 56px !important;
+    background-image: url('images/mime-icon-set.png') !important;
+    background-size: 350px !important;
+    border-radius: 0%  !important;
+    
+}
 
        </style>
 <ng-form name="pserv.mdForm" >
@@ -199,15 +209,14 @@
       <span class="md-headline">Attachments</span>
     </md-card-title-text>
   </md-card-title>
-  <div class="md-padding">
+  <div flex class="md-padding">
       <div flex style="text-align: center;" ng-if="pserv.attachmentsIsEmpty()&&!pserv.editMode">
-          No documents attached yet
+        <md-subheader class="md-no-sticky">No documents attached yet</md-subheader>
+          
       </div>
+
       
-      <div ng-repeat="file in pserv.attachments">
-        <button md-button ng-click="pserv.openExt(file)">{{file.path.base}}</button><br>
-      </div>
-  <div ng-if="pserv.editMode">
+  <div id="attachDialog" flex  ng-if="pserv.editMode">
   <div flex layout="row" flex layout-align="center center">
   <div ngf-drop flex="100" name="attachments" layout="row" ng-model="pserv.selectedFiles" ngf-multiple="true" layout-align="center center" class="dragBox"  ngf-drag-over-class="'dragOverBox'" flex-gt-xs="85">
 
@@ -224,7 +233,7 @@
           <md-progress-linear  md-mode="indeterminate"></md-progress-linear>
       </div>
   </div>-->
-<div ng-if="pserv.selectedFiles" flex="80" class="md-padding" style="margin-top:20px"  flex-gt-xs="70">
+<div flex ng-if="pserv.selectedFiles" flex="80" class="md-padding" style="margin-top:20px"  flex-gt-xs="70">
  
   <md-chips ng-model="pserv.selectedFiles" 
           readonly="true" md-on-append="pserv.pulkit()" md-on-remove="pserv.pulkit()">
@@ -242,6 +251,26 @@
 </div>
 
   </div>
+
+
+
+  <div style="padding-bottom: 30px" ng-if="!pserv.attachmentsIsEmpty()">
+      
+      <md-list >
+        <md-subheader  class="md-no-sticky">{{pserv.attachments.length}} Attachments in total</md-subheader>
+        <md-list-item  class="md-3-line" ng-repeat="file in pserv.attachments" ng-click="pserv.openExt(file)">
+         
+          <div class="md-avatar" style="background-position: {{icons.findSpriteElement(file.mimetype).pos}}" ></div>
+          <div class="md-list-item-text">
+            <h3>{{ file.path.base }}</h3>
+            <h4>File Size : {{ file.size | fileSize}}</h4>
+          
+          </div>
+          <md-divider></md-divider>
+         
+        </md-list-item>
+      </md-list>
+      </div>
     </md-card-content>
   </md-card>
 </fieldset>

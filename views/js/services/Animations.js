@@ -36,7 +36,7 @@ angular.module('AnimationsModule',[]).service('Animations',function(){
 	  }
 	  self.fadeElementOut=function($el) {
 		
-			$el.addClass('animateHidden');
+			$el.addClass('animated fadeOut');
 	  }
     /*****************************************************************************************/
     

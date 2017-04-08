@@ -1,7 +1,7 @@
-app.controller('openPatientCtrl',function($rootScope,$http, $document,$scope,$mdColors,$mdDialog,$mdToast,PatientInfo,PatientBuffer,Animations){
+app.controller('openPatientCtrl',function($rootScope,$http, $document,$scope,$mdColors,$mdDialog,$mdToast,PatientInfo,PatientBuffer,Animations,iconSetProvider){
 
 
-
+      $scope.icons=iconSetProvider;
       $scope.winClose=function(){
         remote.getCurrentWindow().close();
       }

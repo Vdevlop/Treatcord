@@ -24,7 +24,7 @@ var PatientBufferModule = angular.module('PatientBufferModule',[])
 
       }
       self.attachmentsIsEmpty=function(){
-        return (JSON.stringify(self.attachments)=='[]');
+        return (JSON.stringify(self.attachments)=='[]')||!self.attachments;
       }
       self.openExt=function(file)
       {
@@ -199,9 +199,8 @@ var PatientBufferModule = angular.module('PatientBufferModule',[])
             url:'http://localhost:8009/patients/'+_id+'/update/personals',
             data:myFormData,
           })
-          
-         
       }
+
      
 
 });

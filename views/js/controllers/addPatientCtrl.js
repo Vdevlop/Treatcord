@@ -1,8 +1,9 @@
-app.controller('addPatientCtrl',function($rootScope,$http, $document,$scope,$mdColors,$mdToast,$mdDialog,PatientBuffer,Animations){
+app.controller('addPatientCtrl',function($rootScope,$http, $document,$scope,$mdColors,$mdToast,$mdDialog,PatientBuffer,Animations,iconSetProvider){
 
       PatientBuffer.editMode=true;
       $scope.animServ=Animations;
       $scope.mdColors=$mdColors;
+      $scope.icons=iconSetProvider;
       $scope.pserv=PatientBuffer;
       PatientBuffer.getCitiesJSON().then(function(res){
         PatientBuffer.states=res.data;
