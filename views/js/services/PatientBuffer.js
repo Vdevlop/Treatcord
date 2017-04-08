@@ -91,6 +91,7 @@ var PatientBufferModule = angular.module('PatientBufferModule',[])
         self.NewPrescriptionInfo=undefined;
         self.editMode=false;
         self.selectedFiles=undefined;
+        self.attachments=undefined;
        }
 
 

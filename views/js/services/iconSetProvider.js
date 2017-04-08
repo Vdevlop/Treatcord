@@ -7,17 +7,32 @@ app.service('iconSetProvider',function(){
 
       }
        self.cssSprite=[
-            { mime_type:'^(image)',
+              
+            { mime_type:'(powerpoint|presentation)',
+              pos:getSpritepos(6,0) },
+
+            { mime_type:'(excel|sheet)',
+              pos:getSpritepos(4,0) },
+
+            { mime_type:'(word|document)',
+              pos:getSpritepos(5,0) },
+
+            { mime_type:'(zip)',
+              pos:getSpritepos(7,0) },
+
+            { mime_type:'(image)',
               pos:getSpritepos(2,0) },
               
-            { mime_type:'application/vnd.openxmlformats',
+            { mime_type:'(any)',
               pos:getSpritepos(0,0) },
               
-            { mime_type:'application/pdf',
+            { mime_type:'(pdf)',
               pos:getSpritepos(3,0) },
               
-            { mime_type:'application/xml',
-              pos:getSpritepos(0,1) }];
+            { mime_type:'(xml)',
+              pos:getSpritepos(0,1) },
+
+              ];
 
 
      
