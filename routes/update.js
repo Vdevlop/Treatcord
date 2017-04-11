@@ -51,10 +51,10 @@ router.post('/:id/update/personals',fileupload.any(),
 
 
   
-  //if(!_attachments)
+  if(doc[0].attachments)
   var index=doc[0].attachments.length;
-  //else
-  //var index=0;
+  else
+  var index=0;
   req.files.forEach(function(file){
     index++;
     var final_dest=upload_path + ide +'\\'+ index + '-'+file.originalname;

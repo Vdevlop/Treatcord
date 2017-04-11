@@ -159,7 +159,7 @@ var PatientBufferModule = angular.module('PatientBufferModule',[])
            method:'POST',
            url:'http://localhost:8009/patients/'+_id+'/update/symptoms',
            data:self.NewSymptoms
-          })
+          });
       }
       self.sendNewPrescription=function(_id)
       {
@@ -167,7 +167,7 @@ var PatientBufferModule = angular.module('PatientBufferModule',[])
            method:'POST',
            url:'http://localhost:8009/patients/'+_id+'/update/followups',
            data:{'info':self.NewPrescriptionInfo}
-          })
+          });
       }
 
       self.sendMultipart=function(qstring,_id)

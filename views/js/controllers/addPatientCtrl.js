@@ -59,11 +59,11 @@ app.controller('addPatientCtrl',function($rootScope,$http, $document,$scope,$mdC
                         }
                         );
                        var count=0;
-                    if(pserv.NewPrescriptionInfo){
+                    if($scope.pserv.NewPrescriptionInfo){
                     $scope.pserv.sendNewPrescription(response.data._id)
-                        .success(function(res){
+                        .then(function(res){
                               count++;
-                              alert(count);
+                      //  alert(count);
                               if(count==2)
                               {
                                     PatientBuffer.refreshCards();
@@ -73,7 +73,7 @@ app.controller('addPatientCtrl',function($rootScope,$http, $document,$scope,$mdC
                     }
                     else{
                           count++;
-                          alert(count);
+                        //  alert(count);
                               if(count==2)
                               {
                                     PatientBuffer.refreshCards();
@@ -81,20 +81,13 @@ app.controller('addPatientCtrl',function($rootScope,$http, $document,$scope,$mdC
                               }
                     }
                     
-                  if(pserv.NewSymptoms){
+                  if($scope.pserv.NewSymptoms){
                     
                          $scope.pserv.sendNewSymptoms(response.data._id)
                         .then(function(res){
+                             
                               count++;
-                              alert(count);
-                              if(count==2)
-                              {
-                                    PatientBuffer.refreshCards();
-                                     $mdDialog.hide();
-                              }
-                        },function(err){
-                              count++;
-                              alert(count);
+                             // alert(count);
                               if(count==2)
                               {
                                     PatientBuffer.refreshCards();
@@ -103,8 +96,9 @@ app.controller('addPatientCtrl',function($rootScope,$http, $document,$scope,$mdC
                         });
                   }
                   else{
+                      
                        count++;
-                       alert(count);
+                      // alert(count);
                               if(count==2)
                               {
                                     PatientBuffer.refreshCards();

@@ -30,7 +30,7 @@ app.controller('openPatientCtrl',function($rootScope,$http, $document,$scope,$md
 
       $scope.update=function(){
 
-            $mdDialog.hide();
+         
                   var pid=PatientInfo[0]._id;
                   $mdToast.show(
                       {
@@ -90,18 +90,59 @@ app.controller('openPatientCtrl',function($rootScope,$http, $document,$scope,$md
                               $mdToast.hide();
                         }
                   });
-                  if(PatientBuffer.NewSymptoms)
-                  {
-                  $scope.pserv.sendNewSymptoms(pid)
-                        .then(function(res){},function(err){});
+                  var count=0;
+                    if($scope.pserv.NewPrescriptionInfo){
+                         // alert('countc');
+                    $scope.pserv.sendNewPrescription(pid)
+                        .then(function(res){
+                              count++;
+                       // alert(count+'yrah!');
+                              if(count==2)
+                              {
+                                    PatientBuffer.refreshCards();
+                                     $mdDialog.hide();
+                              }
+                        },function(err){
+                              //console.log(count+'yrah!');
+                        });
+                    }
+                    else{
+                          count++;
+                        alert('count');
+                              if(count==2)
+                              {
+                                    PatientBuffer.refreshCards();
+                                     $mdDialog.hide();
+                              }
+                    }
+                    
+                  if($scope.pserv.NewSymptoms){
+                    
+                         $scope.pserv.sendNewSymptoms(pid)
+                        .then(function(res){
+                             
+                              count++;
+                             // alert(count);
+                              if(count==2)
+                              {
+                                    PatientBuffer.refreshCards();
+                                     $mdDialog.hide();
+                              }
+                        });
                   }
-                  if(PatientBuffer.NewPrescriptionInfo)
-                  {
-                  $scope.pserv.sendNewPrescription(pid)
-                        .then(function(res){},function(err){});
+                  else{
+                      
+                       count++;
+                      // alert(count);
+                              if(count==2)
+                              {
+                                    PatientBuffer.refreshCards();
+                                     $mdDialog.hide();
+                              }
                   }
+
                   
-      };
+      }
 
       
       
