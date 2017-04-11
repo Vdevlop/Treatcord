@@ -45,19 +45,19 @@ router.post('/:id/update/personals',fileupload.any(),
   //------------ if any attachment is found ------//
   //convert the file name to id of the patient
   //append file extention corresponding to mimetype
-  db.find({_id: ide},function(doc){
-    console.log(JSON.stringify(doc));
+  db.find({_id:( ide)},{_id:1,"name":1,"attachments":1}).exec(function(err,doc){
+    console.log('oh yeah!'+JSON.stringify(doc)+'!!!!!!!!!!!!');
   var _attachments=[];
 
 
   
   //if(!_attachments)
-  var index=0;
+  var index=doc[0].attachments.length;
   //else
   //var index=0;
   req.files.forEach(function(file){
     index++;
-    var final_dest=upload_path + ide +'\\'+'('+ index + ')'+file.originalname;
+    var final_dest=upload_path + ide +'\\'+ index + '-'+file.originalname;
     fs.move(file.path, final_dest,function(err){console.log(err)});
     _attachments.push({path:path.parse(final_dest),'mimetype':file.mimetype,'size':file.size});
     

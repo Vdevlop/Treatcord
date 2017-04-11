@@ -22,7 +22,6 @@ app.controller('addPatientCtrl',function($rootScope,$http, $document,$scope,$mdC
       };
 
       $scope.create=function(){
-              
               $mdToast.show(
                       {
                             template:'<md-toast>'+
@@ -59,17 +58,62 @@ app.controller('addPatientCtrl',function($rootScope,$http, $document,$scope,$mdC
                             position:"top right"
                         }
                         );
-                       
-                    
-                    //if(!pserv.NewPrescriptionInfo)
+                       var count=0;
+                    if(pserv.NewPrescriptionInfo){
                     $scope.pserv.sendNewPrescription(response.data._id)
+                        .success(function(res){
+                              count++;
+                              alert(count);
+                              if(count==2)
+                              {
+                                    PatientBuffer.refreshCards();
+                                     $mdDialog.hide();
+                              }
+                        });
+                    }
+                    else{
+                          count++;
+                          alert(count);
+                              if(count==2)
+                              {
+                                    PatientBuffer.refreshCards();
+                                     $mdDialog.hide();
+                              }
+                    }
+                    
+                  if(pserv.NewSymptoms){
+                    
+                         $scope.pserv.sendNewSymptoms(response.data._id)
                         .then(function(res){
-                              $scope.pserv.sendNewSymptoms(response.data._id)
-                        .then(function(res){
-                               PatientBuffer.refreshCards();
-                        },function(err){});
-                        },function(err){});
-              },
+                              count++;
+                              alert(count);
+                              if(count==2)
+                              {
+                                    PatientBuffer.refreshCards();
+                                     $mdDialog.hide();
+                              }
+                        },function(err){
+                              count++;
+                              alert(count);
+                              if(count==2)
+                              {
+                                    PatientBuffer.refreshCards();
+                                     $mdDialog.hide();
+                              }
+                        });
+                  }
+                  else{
+                       count++;
+                       alert(count);
+                              if(count==2)
+                              {
+                                    PatientBuffer.refreshCards();
+                                     $mdDialog.hide();
+                              }
+                  }
+
+                  
+            },
              function(err){
                         $mdToast.show(
                       {
@@ -94,7 +138,7 @@ app.controller('addPatientCtrl',function($rootScope,$http, $document,$scope,$mdC
                               $mdToast.hide();
                         }
                   });
-             $mdDialog.hide();
+            
       };
       
       

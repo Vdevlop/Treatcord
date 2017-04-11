@@ -6,7 +6,7 @@ var PatientBufferModule = angular.module('PatientBufferModule',[])
         
         var self=this;
         self.loading=false;
-
+        self.NewSymptoms=[];
        /* 
     self.PatientCards = [{_id:'40A66',name:'Rahul gupta', phone:'555-1276',gender:"M"},
                          {_id:'988GL',name:'Nitin gadkari', phone:'800-BIG-MARY',gender:"M"},

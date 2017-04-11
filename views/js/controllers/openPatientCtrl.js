@@ -29,6 +29,8 @@ app.controller('openPatientCtrl',function($rootScope,$http, $document,$scope,$md
       };
 
       $scope.update=function(){
+
+            $mdDialog.hide();
                   var pid=PatientInfo[0]._id;
                   $mdToast.show(
                       {
@@ -88,13 +90,16 @@ app.controller('openPatientCtrl',function($rootScope,$http, $document,$scope,$md
                               $mdToast.hide();
                         }
                   });
+                  if(PatientBuffer.NewSymptoms)
+                  {
                   $scope.pserv.sendNewSymptoms(pid)
                         .then(function(res){},function(err){});
-                          //if(!pserv.NewPrescriptionInfo)
+                  }
+                  if(PatientBuffer.NewPrescriptionInfo)
+                  {
                   $scope.pserv.sendNewPrescription(pid)
                         .then(function(res){},function(err){});
-                  $mdDialog.hide();
-                  
+                  }
                   
       };
 

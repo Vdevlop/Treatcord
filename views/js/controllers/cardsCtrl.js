@@ -7,6 +7,7 @@ app.controller('cardsCtrl',function($rootScope, $document,$scope,$timeout,$http,
     $scope.patientserv=PatientBuffer;
     self.PatientBufferServ=PatientBuffer;
     PatientBuffer.refreshCards();
+    self.colors=$mdColors;
     self.cardAnim = Animations;
     self.clickClose=function(){
         remote.getCurrentWindow().close();

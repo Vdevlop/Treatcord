@@ -7,7 +7,7 @@ app.filter('relativeTime',function(){
               var subscript="";
               var days= parseFloat( ( (new Date())   - (new Date(convertDate)) )/1000/60/60/24);
         
-        if(days != null)
+        if(days != null && convertDate!='' && convertDate!=undefined)
         {
 
            if(days<1){

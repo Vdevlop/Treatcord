@@ -1,4 +1,4 @@
-[disabled] md-input-container .md-input{
+ md-input-container .md-input [disabled]{
     background-image: none !important;
     color:#000;
 }
