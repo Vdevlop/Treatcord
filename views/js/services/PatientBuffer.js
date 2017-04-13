@@ -1,5 +1,5 @@
 const PATHVAR=require('path');
-const remote=require('electron').remote;
+
 var PatientBufferModule = angular.module('PatientBufferModule',[])
 .service('PatientBuffer',function($http,$mdDialog,$mdToast,Upload){
         
@@ -18,7 +18,7 @@ var PatientBufferModule = angular.module('PatientBufferModule',[])
                          {name:'chako solo wakiya', phone:'555-5678',gender:"F"},
                          {name:'ghajni ammir khna', phone:'555-5678',gender:"F",prescription:{days:9896}}];
     */
-      self.progress=100;
+      self.progress=-1;
       self.showToast=function(){
         
 

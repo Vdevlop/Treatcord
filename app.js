@@ -11,6 +11,7 @@ var filePath=require('./config/dbaccess.js').Database;
 var BrowserWindow = require('electron').BrowserWindow;
 var mainWindow = null;
 
+
 app.on('ready', function() {
     mainWindow = new BrowserWindow({
         height: 600,
@@ -19,9 +20,11 @@ app.on('ready', function() {
         title:"Homeopathy records Management Portal",
         minHeight: 390,
         minWidth: 400,
+        frame:false
 
     });
-mainWindow.on('page-title-updated',function(event,title){event.preventDefault()});
+mainWindow.on( 'page-title-updated',function(event,title){event.preventDefault()});
+
   //  mainWindow.setMinimumSize(200,200);
 //mainWindow.setMenu(null);
 mainWindow.loadURL('file://' + __dirname + '/views/index.html');

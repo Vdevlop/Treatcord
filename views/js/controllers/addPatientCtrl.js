@@ -28,7 +28,9 @@ app.controller('addPatientCtrl',function($rootScope,$http, $document,$scope,$mdC
                                           '<div class="md-toast-content">'+
                                            '     Saving '+
                                             '    <div style="padding-right:10px"></div>'+
-                                             '   <md-progress-linear md-mode="determinate" value="{{pService.progress}}">'+
+                                            '   <md-progress-linear ng-if="pService.progress==-1" md-mode="indeterminate"">'+
+                                             '</md-progress-linear>'+
+                                             '   <md-progress-linear ng-if="pService.progress!=-1" md-mode="determinate" value="{{pService.progress}}">'+
                                           '</md-progress-linear>'+
                                           '</div>'+
                                       '</md-toast>',

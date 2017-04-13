@@ -25,7 +25,7 @@
                 z-index: 21 !important;
     }
     md-toast.md-top {
-                top: calc(10% + 8px);
+                top: calc(10% + 36px);
     }
     </style>
         
@@ -44,10 +44,11 @@
         var app=angular.module('myApp',['ngMaterial','ngAnimate','ngAria','ngMessages','ngFileUpload','angular-scroll-animate','angular-timeline','PatientBufferModule','AnimationsModule'])
         .config(function($mdThemingProvider){
             $mdThemingProvider.theme('default')
-  //  .primaryPalette('blue')
-          // .dark()
-     // .accentPalette('pink');
+ //.primaryPalette('red')
+   //      .dark()
+   //  .accentPalette('orange');
         });
+        const remote=require('electron').remote;
     </script>
     <script src="./js/controllers/cardsCtrl.js"></script>
     <script src="./js/controllers/openPatientCtrl.js"></script>
@@ -59,17 +60,25 @@
     <script src="./js/filters/unique.js"></script>
     <script src="./js/filters/fileSize.js"></script>
 
-
 <body  ng-init="ctrl.PatientBufferServ.refreshCards()">
    
 <div  layout="column" style="max-height:88%"  >
         
-     
-     
+<md-toolbar style="padding: 0px; min-height:36px !important;" md-colors="{background: 'primary-800' }"  md-scroll-shrink=false layout="row" layout-align="center end"  layout-fill>
+        <div flex style="min-height: 36px;-webkit-app-region:drag;">
+            <div style="min-width: 36px;min-height:36px"></div>
+        </div>
+        <div style="opacity: 0.7;padding-right: 8px;">
+             <md-button style="margin:0px;padding: 0px;width: 32px;" class="md-mini md-icon-button" ng-click="ctrl.minimize()"><md-icon style="font-size: 18px;padding-top: 20%">remove</md-icon></md-button>
+        <md-button style="margin:0px;padding: 0px;width: 32px" class="md-mini md-icon-button" ng-click="ctrl.toggleFullscreen()"><md-icon style="font-size: 18px;padding-top: 20%">fullscreen{{ctrl.iconFullscreen}}</md-icon></md-button>
+        <md-button style="margin:0px;padding: 0px;width: 32px" class="md-mini md-icon-button" ng-click="ctrl.clickClose()"><md-icon style="font-size: 18px;padding-top: 20%">close</md-icon></md-button>
+        </div>
+ 
+</md-toolbar>
 <md-toolbar class="md-medium-tall"  md-scroll-shrink=false layout="row" layout-align="start center" >
 
          <h4 layout-align="center" layout="row" hide-xs flex="33" >Homeopathy labs </h4>
-         <div   flex-xs="85" flex="40"  layout-align="start center"  >
+         <div   flex-xs="85" flex="40"  layout-align="start center">
       
    <md-autocomplete    
           md-colors="{background: 'primary-400' }"

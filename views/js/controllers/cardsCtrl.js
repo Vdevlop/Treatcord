@@ -1,16 +1,29 @@
 
-
-
-
+//const remote=require('electron').remote;
 app.controller('cardsCtrl',function($rootScope, $document,$scope,$timeout,$http,$mdColors,$mdDialog,$timeout, $q, $log,PatientBuffer,Animations) {
     var self = this;
+    
     $scope.patientserv=PatientBuffer;
     self.PatientBufferServ=PatientBuffer;
     PatientBuffer.refreshCards();
     self.colors=$mdColors;
     self.cardAnim = Animations;
     self.clickClose=function(){
+      //alert('dsafad');
         remote.getCurrentWindow().close();
+    }
+    self.minimize=function(){
+      remote.getCurrentWindow().minimize();
+    }
+    self.toggleFullscreen=function(){
+      
+      
+      if(!self.iconFullscreen)
+      {remote.getCurrentWindow().setFullScreen(true);
+        self.iconFullscreen='_exit'}
+      else
+      {remote.getCurrentWindow().setFullScreen(false);
+        self.iconFullscreen='';}
     }
     
     /****************************** Dynamic Patient's Search Engine ***********************************/
