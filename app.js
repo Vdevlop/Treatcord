@@ -1,5 +1,6 @@
 
 var app = require('electron').app;
+var ipc = require('electron').ipcMain;
 var _express=require('express');
 var express=_express();
 var fs=require('fs');
@@ -11,23 +12,31 @@ var filePath=require('./config/dbaccess.js').Database;
 var BrowserWindow = require('electron').BrowserWindow;
 var mainWindow = null;
 
+const remote=require('electron').remote;
 
 app.on('ready', function() {
-    mainWindow = new BrowserWindow({
+   var mainWindow = new BrowserWindow({
         height: 600,
         width: 800,
         icon:"./favicon.png",
-        title:"Homeopathy records Management Portal",
+        title:"Homeopathylabs record Management Portal",
         minHeight: 390,
         minWidth: 400,
         frame:false
-
     });
 mainWindow.on( 'page-title-updated',function(event,title){event.preventDefault()});
-
-  //  mainWindow.setMinimumSize(200,200);
+//mainWindow.setMinimumSize(200,200);
 //mainWindow.setMenu(null);
-mainWindow.loadURL('file://' + __dirname + '/views/index.html');
+mainWindow.loadURL('file://' + __dirname + '/views/index.html');  
+});
+
+
+ipc.on('selectPort',function(event){
+        console.log("pulkit");
+        var listener=express.listen(0,function(){
+             console.log(listener.address().port);
+             event.sender.send('portSelected',listener.address().port);
+            });
 });
 console.log("Database: "+(filePath));
 
@@ -105,7 +114,7 @@ var get=require('./routes/get');
 
 
 // view engine setup
-express.listen(8009);
+
 express.set('view engine', 'html');
 
 express.set('views', path.join(__dirname, 'views'));

@@ -1,3 +1,10 @@
+
+<style>
+  md-list-item.animated{
+    animation-duration: 400ms;
+    -webkit-animation-duration: 400ms;
+  }
+  </style>
 <div >
 
 <md-card    when-visible="animServ.TimeAnimateElementIn" when-not-visible="animServ.TimeAnimateElementOut">
@@ -7,15 +14,150 @@
       <span class="md-headline">Today's Prescription</span>
     </md-card-title-text>
   </md-card-title>
+
+
+
   <div flex="100" layout="row" layout-align="center" >
   <md-input-container flex="70" dividerColor="primary" style="width: 200px"  flex-gt-xs="75" align="start">
     <md-icon class="md-primary">mode_edit</md-icon>
-      <textarea name="Prescription" rows="7" md-maxlength="256" maxlength="256" md-select-on-focus ng-model="pserv.NewPrescriptionInfo" type="text"
+      <textarea name="Prescription" rows="4" md-maxlength="256" maxlength="256" md-select-on-focus ng-model="pserv.NewPrescriptionInfo" type="text"
              placeholder="Describe Prescription" flex></textarea>
   </md-input-container>
+  </div>
 
 
+
+  <div  layout="column" layout-align="center" >
     
+     <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">Medicines List</span>
+    </md-card-title-text>
+  </md-card-title>
+  <div flex layout="row" layout-align="center" >
+    
+  <md-autocomplete 
+          flex="50"
+          class="md-warn"
+          md-no-cache="true"
+          md-selected-item="med.selectedItem"
+          md-search-text-change="med.searchTextChange(med.searchText)"
+          md-search-text="med.searchText"
+          md-selected-item-change="med.selectedItemChange(item)"
+          md-items="item in med.querySearch(med.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Prescribe Medicine here!">
+        <md-item-template>
+          <span md-highlight-text="med.searchText" md-highlight-flags="^i">{{item.display}}</span>
+        </md-item-template>
+        <!--md-not-found>
+          No Medicines matching "{{med.searchText}}" were found.
+          <a ng-click="med.newState(med.searchText)">Create a new one!</a>
+        </md-not-found-->
+      </md-autocomplete>
+    <div >
+    <md-button ng-click="med.addMedicine()"  class="md-warn md-raised md-icon-button md-mini" aria-label="search by name">
+               <md-icon>add</md-icon>
+    </md-button>
+    <md-button ng-if="pserv.Prescriptions" ng-click="pserv.restoreMedicinesList()"  class="md-icon-button" aria-label="restore from previous visit">
+           <md-icon>restore</md-icon>
+    </md-button>
+    </div>
+  </div>
+ 
+ <div flex layout="row" layout-align="center">
+
+  <div style="padding-top:24px;" flex="90">
+  <md-list  ng-if="med.medicinesListOpen" ng-readonly="true" md-no-ink>
+        <md-subheader flex style="border: #d2d2d2;border-style: dashed ;border-width: 1px"   class="">
+              <div flex layout="row" layout-align="start">
+              <div flex="10" style="overflow: hidden;border-right: #d2d2d2 2px dotted;padding: 2px;text-align: center ">Dose</div>
+              <div flex="50" style="overflow: hidden;border-right: #d2d2d2 2px dotted;padding: 2px;text-align: center ">&nbsp;{{med.medicinesList.length}} Medicines Prescribed in total</div>
+              <div  flex="35" layout="row" layout-align="center" >
+                  <div style="overflow: hidden;border-right:#d2d2d2 2px dotted;padding: 2px;text-align: center " flex="33">
+                    <div hide show-gt-sm>
+                    Morning
+                    </div>
+                    <div hide-gt-sm>M
+                    </div>
+                  </div>
+                  <div style="overflow: hidden;border-right: #d2d2d2 2px dotted;padding: 2px;text-align: center " flex="33">
+                    
+                    <div hide show-gt-sm>
+                    Afternoon
+                    </div>
+                    <div hide-gt-sm>A
+                    </div>
+                  </div>
+                  <div style="overflow: hidden;padding: 2px;text-align: center" flex="33">
+            
+                    <div hide show-gt-sm>
+                     Night
+                    </div>
+                    <div hide-gt-sm>N
+                    </div>
+                  </div>
+
+              </div>
+              <div flex="5">
+              </div>
+              </div>
+        </md-subheader>
+        <div style="margin-top: 10px; padding-bottom:10px; border: #d2d2d2;border-style: dashed ;border-width: 1px">
+        <md-list-item  style="padding: 0px;"  class="md-2-line animated fadeIn" id="{{'medicineListItem'+'_'+$index}}" ng-repeat="medicine in med.medicinesList" animateOut>
+         
+          <!--div class="md-avatar" style="background-position: {{icons.findSpriteElement(file.mimetype).pos}}" ></div-->
+          <div class="md-list-item-text" layout="row" layout-align="start">
+            <div style="padding-top: 8px" flex="10">
+            <md-input-container class="md-accent" style="margin:0px" md-no-float>
+      <input mdInput name="dosage" ng-model="medicine.dose" type="number" required
+             placeholder="dose">
+            </md-input-container>
+            </div>
+            <h3 class="md-padding" flex="50">&nbsp;{{ medicine.name }}</h3>
+            <div  flex="35" layout="row" layout-align="center-center" >
+                  <div style="overflow: hidden;padding: 2px;text-align: center " flex="33">
+                    <md-checkbox
+              ng-model="medicine.morning"
+              aria-label="Morning"
+              ng-true-value=true
+              ng-false-value=false
+              class="md-accent md-align-center-center" flex></md-checkbox>
+                  </div>
+                  <div  style="overflow: hidden;padding: 2px;text-align: center " flex="33">
+                    <md-checkbox
+              ng-model="medicine.afternoon"
+              aria-label="Afternoon"
+              ng-true-value=true
+              ng-false-value=false
+              class="md-accent md-align-center-center" flex></md-checkbox>
+                  </div>
+                  <div style="overflow: hidden;padding: 2px;text-align: center" flex="33">
+                   <md-checkbox
+              ng-model="medicine.night"
+              aria-label="Night"
+              ng-true-value=true
+              ng-false-value=false
+              class="md-accent md-align-center-center" flex></md-checkbox>
+                  </div>
+
+              </div>
+              <div  flex="5" layout="row" layout-align="center-start">
+                <div style="padding-top: 8px">
+                  <md-button class="md-icon-button" ng-click="med.removeMedicine(medicine.name,$index)"><md-icon>cancel</md-icon></md-button>
+                </div>
+              </div>
+            <!--h4 style="color: #636363">File Size : {{ file.size | fileSize}}</h4-->
+          
+          </div>
+          <md-divider></md-divider>
+         
+        </md-list-item>
+        </div>
+      </md-list>
+  </div>
+  </div>
   </div>
     </md-card-content>
 </md-card>
@@ -41,8 +183,17 @@
         <div flex="100" layout="row" layout-align="center" >
   <md-input-container flex="70" dividerColor="primary" style="width: 200px"  flex-gt-xs="75" align="start">
     <md-icon style="color:#a4a4a4 ">comment</md-icon>
-      <textarea  name="Prescription" rows="7" md-maxlength="256" maxlength="256" md-select-on-focus ng-model="event.info" type="text"
+      <textarea  name="Prescription" rows="4" md-maxlength="256" maxlength="256" md-select-on-focus ng-model="event.info.description" type="text"
              placeholder="Prescription" flex readonly></textarea>
+      
+      <md-chips ng-model="event.info.medicines" 
+          readonly="true">
+      <md-chip-template >
+        <div style="padding-right: 33px" >
+          {{$chip.dose*($chip.morning?1:0)+'-'+$chip.dose*($chip.afternoon?1:0)+'-'+$chip.dose*($chip.night?1:0)+' '+$chip.name}}
+        </div>
+      </md-chip-template>
+    </md-chips>
   </md-input-container>
   </div>
       </timeline-panel>

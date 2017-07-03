@@ -1,10 +1,19 @@
 const PATHVAR=require('path');
 
+
 var PatientBufferModule = angular.module('PatientBufferModule',[])
-.service('PatientBuffer',function($http,$mdDialog,$mdToast,Upload){
+.service('PatientBuffer',function($http,$filter,$mdDialog,$mdToast,Upload,Medicines){
         
         
         var self=this;
+        self.port = 3000;
+
+        
+      
+        self.restoreMedicinesList=function(){
+            Medicines.medicinesList=$filter('orderBy')(self.Prescriptions,'-date')[0].info.medicines.slice(0);
+            Medicines.medicinesListOpen=true;
+        }
         self.loading=false;
         self.NewSymptoms=[];
        /* 
@@ -92,6 +101,11 @@ var PatientBufferModule = angular.module('PatientBufferModule',[])
         self.editMode=false;
         self.selectedFiles=undefined;
         self.attachments=undefined;
+        self.newSymptomInfo=undefined;
+        Medicines.selectedItem=undefined;
+        Medicines.searchText=undefined;
+        Medicines.medicinesList=[];
+        Medicines.medicinesListOpen=undefined;
        }
 
 
@@ -113,14 +127,14 @@ var PatientBufferModule = angular.module('PatientBufferModule',[])
         {
             return $http({
                 method:'GET',
-                url: 'http://localhost:8009/patients/'+_id+'/delete'
+                url: 'http://localhost:'+self.port+'/patients/'+_id+'/delete'
               })
         }
         self.getPatient=function(_id)
         {
               return $http({
                 method:'GET',
-                url: 'http://localhost:8009/patients/'+_id+'/get'
+                url: 'http://localhost:'+self.port+'/patients/'+_id+'/get'
               })
         }
 
@@ -128,14 +142,14 @@ var PatientBufferModule = angular.module('PatientBufferModule',[])
         {
              return $http({
                 method:'GET',
-                url: 'http://localhost:8009/cards'
+                url: 'http://localhost:'+self.port+'/cards'
                   })
         }
        self.refreshCards=function()
         {
              self.getPatientCards()
             .then(function(res){
-
+              
                var content = res.data;
                 self.PatientCards=content;
             })
@@ -149,6 +163,7 @@ var PatientBufferModule = angular.module('PatientBufferModule',[])
         self.newSymptomDate=new Date();
         self.addNewSymptom=function(){
             self.NewSymptoms.unshift({'info': self.newSymptomInfo,'date': self.newSymptomDate});
+            self.newSymptomInfo=undefined;
         }; 
 
 
@@ -157,7 +172,7 @@ var PatientBufferModule = angular.module('PatientBufferModule',[])
       {
          return $http({
            method:'POST',
-           url:'http://localhost:8009/patients/'+_id+'/update/symptoms',
+           url:'http://localhost:'+self.port+'/patients/'+_id+'/update/symptoms',
            data:self.NewSymptoms
           });
       }
@@ -165,8 +180,8 @@ var PatientBufferModule = angular.module('PatientBufferModule',[])
       {
          return $http({
            method:'POST',
-           url:'http://localhost:8009/patients/'+_id+'/update/followups',
-           data:{'info':self.NewPrescriptionInfo}
+           url:'http://localhost:'+self.port+'/patients/'+_id+'/update/followups',
+           data:{'info':{'description':self.NewPrescriptionInfo,'medicines':Medicines.medicinesList}}
           });
       }
 
@@ -189,7 +204,7 @@ var PatientBufferModule = angular.module('PatientBufferModule',[])
          if(qstring=='add')
          return Upload.upload({
             method:'POST',
-            url:'http://localhost:8009/patients/add',
+            url:'http://localhost:'+self.port+'/patients/add',
             data:myFormData,
          }) 
          
@@ -197,7 +212,7 @@ var PatientBufferModule = angular.module('PatientBufferModule',[])
           else if(qstring=='update')
           return Upload.upload({
             method:'POST',
-            url:'http://localhost:8009/patients/'+_id+'/update/personals',
+            url:'http://localhost:'+self.port+'/patients/'+_id+'/update/personals',
             data:myFormData,
           })
       }

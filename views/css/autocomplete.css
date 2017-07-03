@@ -1,12 +1,12 @@
 /*------------------ Custom autocomplete -------------------*/      
 
-    md-autocomplete input::-webkit-input-placeholder {
+    md-autocomplete.cardctrl input::-webkit-input-placeholder {
     color:rgba(255, 255, 255, 0.5);
     }
-    md-autocomplete input:not(.md-input){
+    md-autocomplete.cardctrl input:not(.md-input){
       color: rgba(255, 255, 255, 0.9);
     }
-    md-autocomplete button md-icon path {
+    md-autocomplete.cardctrl button md-icon path {
     fill: rgba(255, 255, 255,0.9);
     }
 

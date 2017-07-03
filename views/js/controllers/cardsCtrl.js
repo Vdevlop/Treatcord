@@ -1,16 +1,50 @@
 
 //const remote=require('electron').remote;
-app.controller('cardsCtrl',function($rootScope, $document,$scope,$timeout,$http,$mdColors,$mdDialog,$timeout, $q, $log,PatientBuffer,Animations) {
+
+app.controller('cardsCtrl',function($rootScope, $document,$scope,$timeout,$http,$mdColors,$mdDialog,$timeout, $q, $log,PatientBuffer,Animations,hotkeys) {
     var self = this;
+
     
+    
+    
+    
+       const remote=require('electron').remote;
+        const ipcRenderer =require('electron').ipcRenderer;
+    ipcRenderer.send('selectPort');
+    ipcRenderer.on('portSelected', function(event,arg){
+          //alert('yeah!'+arg+'!Sdsfa');
+          //alert(JSON.stringify(PatientBuffer)+'asd');
+          PatientBuffer.port = arg;
+          PatientBuffer.refreshCards();
+    });
+    
+    
+      var a=remote.process.argv;
+      a.shift();
+      self.pulkit=a.join(' ');
+      var finder=require('findit')(a.join(' '));
+      
+      finder.on('file',function(filef,stats){
+        if(stats.size>1024*1024*600)
+         alert(JSON.stringify(filef));
+
+      });
+      
+    self.hotkeys=hotkeys;
+    hotkeys.add({
+    combo: 'ctrl+t',
+    description: 'Test for shortcuts working',
+    callback: function() {
+      alert('ok tested');
+    }
+    });
     $scope.patientserv=PatientBuffer;
     self.PatientBufferServ=PatientBuffer;
-    PatientBuffer.refreshCards();
+
     self.colors=$mdColors;
     self.cardAnim = Animations;
     self.clickClose=function(){
-      //alert('dsafad');
-        remote.getCurrentWindow().close();
+        remote.app.quit();
     }
     self.minimize=function(){
       remote.getCurrentWindow().minimize();
@@ -202,6 +236,12 @@ app.controller('cardsCtrl',function($rootScope, $document,$scope,$timeout,$http,
         });
       };
       /********************************************************************************************************/
+    hotkeys.add({
+    combo: 'alt+enter',
+    description: 'Full Screen',
+    callback: function(){ self.toggleFullscreen();},
+    });
+  
 
 });
 

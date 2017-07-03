@@ -1,17 +1,19 @@
 {
   "name": "views",
   "version": "1.0.0",
-  "description": "",
+  "description": "entry point of app's frontend",
   "main": "index.js",
   "dependencies": {
     "angular": "^1.6.2",
     "angular-animate": "^1.6.2",
     "angular-aria": "^1.6.2",
+    "angular-hotkeys": "^1.7.0",
     "angular-material": "^1.1.3",
     "angular-messages": "^1.6.3",
     "angular-scroll-animate": "^0.9.9",
     "angular-timeline": "^1.7.0",
     "animate.css": "^3.5.2",
+    "findit": "^2.0.0",
     "material-design-icons": "^3.0.1",
     "ng-file-upload": "^12.2.13"
   },

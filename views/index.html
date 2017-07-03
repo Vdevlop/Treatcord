@@ -5,12 +5,13 @@
     <link type="text/css" rel="stylesheet" href="./node_modules/angular-material/angular-material.css">
     <link type="text/css" rel="stylesheet" href="./node_modules/angular-timeline/dist/angular-timeline.css"/>
     <link type="text/css" rel="stylesheet" href="./node_modules/angular-timeline/dist/angular-timeline-animations.css"/>
+    <link type="text/css" rel="stylesheet" href="./node_modules/angular-hotkeys/build/hotkeys.css"/>
     <link type="text/css" rel="stylesheet" href="./node_modules/animate.css/animate.css"/>
     <link type="text/css" rel="stylesheet" href="./css/scrollbars.css"> 
     <link type="text/css" rel="stylesheet" href="./css/autocomplete.css"> 
     <link type="text/css" rel="stylesheet" href="./css/card.css"> 
     <link type="text/css" rel="stylesheet" href="./css/disabled.css"> 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
+    <link type="text/css" rel="stylesheet" href="./iconfont/material-icons.css">    
     
     <style type="text/css">
     
@@ -38,30 +39,35 @@
     <script src="./node_modules/angular-scroll-animate/dist/angular-scroll-animate.js"></script>
     <script src="./node_modules/angular-timeline/dist/angular-timeline.js"></script>
     <script src="./node_modules/ng-file-upload/dist/ng-file-upload.js"></script>
+    <script src="./node_modules/angular-hotkeys/build/hotkeys.js"></script>
 
     
     <script>
-        var app=angular.module('myApp',['ngMaterial','ngAnimate','ngAria','ngMessages','ngFileUpload','angular-scroll-animate','angular-timeline','PatientBufferModule','AnimationsModule'])
+        var app=angular.module('myApp',['ngMaterial','ngAnimate','ngAria','ngMessages','ngFileUpload','angular-scroll-animate','angular-timeline','PatientBufferModule','AnimationsModule','Medicines','cfp.hotkeys'])
         .config(function($mdThemingProvider){
             $mdThemingProvider.theme('default')
  //.primaryPalette('red')
    //      .dark()
    //  .accentPalette('orange');
         });
-        const remote=require('electron').remote;
+        
     </script>
+    
     <script src="./js/controllers/cardsCtrl.js"></script>
     <script src="./js/controllers/openPatientCtrl.js"></script>
     <script src="./js/controllers/addPatientCtrl.js"></script>
     <script src="./js/services/PatientBuffer.js"></script>
+    <script src="./js/services/Medicines.js"></script>
     <script src="./js/services/Animations.js"></script>
     <script src="./js/services/iconSetProvider.js"></script>
     <script src="./js/filters/relativeTime.js"></script>
     <script src="./js/filters/unique.js"></script>
     <script src="./js/filters/fileSize.js"></script>
 
-<body  ng-init="ctrl.PatientBufferServ.refreshCards()">
-   
+  
+
+<body >
+
 <div  layout="column" style="max-height:88%"  >
         
 <md-toolbar style="padding: 0px; min-height:36px !important;" md-colors="{background: 'primary-800' }"  md-scroll-shrink=false layout="row" layout-align="center end"  layout-fill>
@@ -69,18 +75,21 @@
             <div style="min-width: 36px;min-height:36px"></div>
         </div>
         <div style="opacity: 0.7;padding-right: 8px;">
-             <md-button style="margin:0px;padding: 0px;width: 32px;" class="md-mini md-icon-button" ng-click="ctrl.minimize()"><md-icon style="font-size: 18px;padding-top: 20%">remove</md-icon></md-button>
-        <md-button style="margin:0px;padding: 0px;width: 32px" class="md-mini md-icon-button" ng-click="ctrl.toggleFullscreen()"><md-icon style="font-size: 18px;padding-top: 20%">fullscreen{{ctrl.iconFullscreen}}</md-icon></md-button>
-        <md-button style="margin:0px;padding: 0px;width: 32px" class="md-mini md-icon-button" ng-click="ctrl.clickClose()"><md-icon style="font-size: 18px;padding-top: 20%">close</md-icon></md-button>
+        <md-button style="margin:0px;padding: 0px;width: 32px;" class="md-mini md-icon-button" ng-click="ctrl.minimize()"><md-icon  style="font-size: 18px;padding-top: 20%">remove</md-icon></md-button>
+        <md-button style="margin:0px;padding: 0px;width: 32px" class="md-mini md-icon-button" ng-click="ctrl.toggleFullscreen()"><md-icon  style="font-size: 18px;padding-top: 20%">fullscreen{{ctrl.iconFullscreen}}</md-icon></md-button>
+        <md-button style="margin:0px;padding: 0px;width: 32px" class="md-mini md-icon-button" ng-click="ctrl.clickClose()"><md-icon  style="font-size: 18px;padding-top: 20%">close</md-icon></md-button>
         </div>
  
 </md-toolbar>
 <md-toolbar class="md-medium-tall"  md-scroll-shrink=false layout="row" layout-align="start center" >
-
-         <h4 layout-align="center" layout="row" hide-xs flex="33" >Homeopathy labs </h4>
+        <div layout-align="center" layout="row" hide-xs flex="33">
+            <img hide-sm style="width:48px;height: 48px;margin-top:10px " src="../favicon.png">
+         <h4  >&nbsp;Homeopathy labs </h4>
+        </div>
+        
          <div   flex-xs="85" flex="40"  layout-align="start center">
       
-   <md-autocomplete    
+   <md-autocomplete    class="cardctrl"
           md-colors="{background: 'primary-400' }"
           ng-disabled="ctrl.isDisabled"
           md-no-cache="ctrl.noCache"
@@ -95,7 +104,7 @@
           placeholder="Search for patients visited so far !">
       
       <md-item-template>
-          <md-icon style="font-size: 21px ;align-content: center">trending_up</md-icon>
+          <md-icon  style="font-size: 21px ;align-content: center">trending_up</md-icon>
               <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">
                   {{item.display}}
             </span>
@@ -104,7 +113,7 @@
       <md-not-found>
           <a ng-click="ctrl.newState(ctrl.searchText)">
               <div ng-if="ctrl.searchText">
-             <md-icon>history</md-icon> No patients matching "{{ctrl.searchText}}" were recently searched.
+             <md-icon >history</md-icon> No patients matching "{{ctrl.searchText}}" were recently searched.
               </div>
               <div ng-if="!ctrl.searchText">
                   To search for Patient, Enter keywords appearing in name
@@ -115,20 +124,21 @@
       
          </div>
 
-           <md-button class="md-fab md-mini" aria-label="search by name">
-               <md-icon>search</md-icon>
+           <md-button ng-click="ctrl.PatientBufferServ.refreshCards()" class="md-fab md-mini" aria-label="search by name">
+               <md-icon >search</md-icon>
            </md-button> 
+           <div flex layout="column" style="padding-right: 24px" layout-align="end end " show-gt-sm hide>
+           <md-button class="md-icon-button"  ng-click="ctrl.hotkeys.toggleCheatSheet()"><md-icon >help_outline</md-icon></md-button>
+           </div>
   
 </md-toolbar>
 
 
 
-<md-button  data-ng-click="ctrl.addPatientInfo($event)" class="md-fab md-fab-bottom-right" style="position: fixed !important"   aria-label="add new patient" >           
-            <md-icon >add</md-icon>
-     </md-button>
-      
+   
 <md-content id="PatientCardsWindow">
-<div flex style="margin: 10%; margin-top: 5%;margin-bottom: 10px;padding-bottom:100px;overflow: hidden">
+    {{ctrl.pulkit}}
+<div flex style="margin-right: 10%;margin-left: 10%; margin-top: 5%;margin-bottom: 10px;padding-bottom:100px;overflow: hidden">
 <div  layout="row" layout-align="center" layout-wrap>
     
 <div flex="100" flex-gt-sm="50"  flex-gt-md="33" data-ng-repeat="card in values=(ctrl.PatientBufferServ.PatientCards | filter: ctrl.searchText)" >
@@ -159,9 +169,9 @@
         <md-content flex class="md-primary" style="border: #d2d2d2;border-style: dashed ;border-width: 1px;border-right: none;border-left:none;border-bottom:none  ">
         <md-card-actions class=" md-primary"  layout="row" layout-align="end end">
             <div  flex layout="row" layout-align="end end">
-            <md-button class="md-icon-button " data-ng-click="ctrl.deletePatient($event,card._id,card.name)"><md-icon aria-label="open" class="md-24">delete</md-icon></md-button>
+            <md-button class="md-icon-button " data-ng-click="ctrl.deletePatient($event,card._id,card.name)"><md-icon  aria-label="open" class="md-24">delete</md-icon></md-button>
             
-          <md-button class="md-icon-button " data-ng-click="ctrl.openPatientInfo($event,card.name,card._id)"><md-icon aria-label="open" class="md-24">open_in_new</md-icon></md-button>
+          <md-button class="md-icon-button " data-ng-click="ctrl.openPatientInfo($event,card.name,card._id)"><md-icon  aria-label="open" class="md-24">open_in_new</md-icon></md-button>
             </div>
         </md-card-actions>
         </md-content>
@@ -186,7 +196,7 @@
         Soory, No Patient found with keywords "{{ctrl.searchText}}"
           </div>
           <div ng-if="!ctrl.searchText" class="md-padding" style="line-height: 1.5">
-          Welcome, click on <md-icon class="md-accent">add</md-icon> button to add a Patient 
+          Welcome, click on <md-icon  class="md-accent">add</md-icon> button to add a Patient 
           </div>
         </md-card-title>
     </md-card>
@@ -194,6 +204,9 @@
 </div>
 </div>
 </md-content>
+<md-button ng-if="ctrl.PatientBufferServ.PatientCards" data-ng-click="ctrl.addPatientInfo($event)" class="md-fab md-fab-bottom-right" style="position: fixed !important"   aria-label="add new patient" >           
+            <md-icon  >add</md-icon>
+     </md-button>
 
 </div>
    

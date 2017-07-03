@@ -1,10 +1,11 @@
-app.controller('addPatientCtrl',function($rootScope,$http, $document,$scope,$mdColors,$mdToast,$mdDialog,PatientBuffer,Animations,iconSetProvider){
+app.controller('addPatientCtrl',function($rootScope,$http, $document,$scope,$mdColors,$mdToast,$mdDialog,PatientBuffer,Medicines,Animations,iconSetProvider,Medicines){
 
       PatientBuffer.editMode=true;
       $scope.animServ=Animations;
       $scope.mdColors=$mdColors;
       $scope.icons=iconSetProvider;
       $scope.pserv=PatientBuffer;
+      $scope.med=Medicines;
       PatientBuffer.getCitiesJSON().then(function(res){
         PatientBuffer.states=res.data;
       });
@@ -61,7 +62,7 @@ app.controller('addPatientCtrl',function($rootScope,$http, $document,$scope,$mdC
                         }
                         );
                        var count=0;
-                    if($scope.pserv.NewPrescriptionInfo){
+                    if($scope.pserv.NewPrescriptionInfo||!Medicines.medicinesListIsEmpty()){
                     $scope.pserv.sendNewPrescription(response.data._id)
                         .then(function(res){
                               count++;
