@@ -1,0 +1,240 @@
+[debug] [2017-09-04T05:41:00.872Z] ----------------------------------------------------------------------
+[debug] [2017-09-04T05:41:00.876Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Garg Decipher\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase init
+[debug] [2017-09-04T05:41:00.880Z] CLI Version:   3.10.0
+[debug] [2017-09-04T05:41:00.880Z] Platform:      win32
+[debug] [2017-09-04T05:41:00.880Z] Node Version:  v7.6.0
+[debug] [2017-09-04T05:41:00.880Z] Time:          Mon Sep 04 2017 11:11:00 GMT+0530 (India Standard Time)
+[debug] [2017-09-04T05:41:00.880Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-09-04T05:41:00.928Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
+[debug] [2017-09-04T05:41:00.928Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Server\projects\HomeopathyLabs
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2017-09-04T05:41:21.237Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-09-04T05:41:21.237Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/uRGVjK7uoc3F5ZRy9GFabU5hFrDkSMFLKPVEUdFfAvb82wbDonSqQu6vsgR-5jNA',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Mon Sep 04 2017 11:11:21 GMT+0530 (India Standard Time)
+[debug] [2017-09-04T05:41:21.685Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-04T05:41:21.733Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects  
+ Mon Sep 04 2017 11:11:21 GMT+0530 (India Standard Time)
+[debug] [2017-09-04T05:41:24.720Z] <<< HTTP RESPONSE 200
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[info] +  Wrote  /404.html
+[debug] [2017-09-04T05:41:51.087Z] >>> HTTP REQUEST GET https://www.gstatic.com/firebasejs/releases.json  
+ Mon Sep 04 2017 11:11:51 GMT+0530 (India Standard Time)
+[debug] [2017-09-04T05:41:51.724Z] Error: read ECONNRESET
+    at exports._errnoException (util.js:1028:11)
+    at TLSWrap.onread (net.js:572:26)
+[error] 
+[error] Error: Server Error. read ECONNRESET
+[debug] [2017-09-04T05:41:59.223Z] ----------------------------------------------------------------------
+[debug] [2017-09-04T05:41:59.227Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Garg Decipher\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase init
+[debug] [2017-09-04T05:41:59.231Z] CLI Version:   3.10.0
+[debug] [2017-09-04T05:41:59.231Z] Platform:      win32
+[debug] [2017-09-04T05:41:59.231Z] Node Version:  v7.6.0
+[debug] [2017-09-04T05:41:59.231Z] Time:          Mon Sep 04 2017 11:11:59 GMT+0530 (India Standard Time)
+[debug] [2017-09-04T05:41:59.231Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-09-04T05:41:59.243Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
+[debug] [2017-09-04T05:41:59.243Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Server\projects\HomeopathyLabs
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2017-09-04T05:42:04.955Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects  
+ Mon Sep 04 2017 11:12:04 GMT+0530 (India Standard Time)
+[debug] [2017-09-04T05:42:06.492Z] <<< HTTP RESPONSE 200
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2017-09-04T05:42:24.139Z] >>> HTTP REQUEST GET https://www.gstatic.com/firebasejs/releases.json  
+ Mon Sep 04 2017 11:12:24 GMT+0530 (India Standard Time)
+[debug] [2017-09-04T05:42:24.795Z] Error: read ECONNRESET
+    at exports._errnoException (util.js:1028:11)
+    at TLSWrap.onread (net.js:572:26)
+[error] 
+[error] Error: Server Error. read ECONNRESET
+[debug] [2017-09-04T05:42:32.972Z] ----------------------------------------------------------------------
+[debug] [2017-09-04T05:42:32.972Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Garg Decipher\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase init
+[debug] [2017-09-04T05:42:32.972Z] CLI Version:   3.10.0
+[debug] [2017-09-04T05:42:32.972Z] Platform:      win32
+[debug] [2017-09-04T05:42:32.976Z] Node Version:  v7.6.0
+[debug] [2017-09-04T05:42:32.976Z] Time:          Mon Sep 04 2017 11:12:32 GMT+0530 (India Standard Time)
+[debug] [2017-09-04T05:42:32.976Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-09-04T05:42:32.990Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
+[debug] [2017-09-04T05:42:32.990Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Server\projects\HomeopathyLabs
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2017-09-04T05:42:43.010Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects  
+ Mon Sep 04 2017 11:12:43 GMT+0530 (India Standard Time)
+[debug] [2017-09-04T05:42:44.307Z] <<< HTTP RESPONSE 200
+[info] 
+=== Database Setup
+[info] 
+[info] Firebase Realtime Database Rules allow you to define how your data should be
+[info] structured and when your data can be read from and written to.
+[info] 
+[debug] [2017-09-04T05:43:03.802Z] Error: EISDIR: illegal operation on a directory, open 'D:\Server\projects\HomeopathyLabs\ '
+    at Object.fs.openSync (fs.js:582:18)
+    at Object.fs.writeFileSync (fs.js:1301:33)
+    at Config.writeProjectFile (C:\Users\Garg Decipher\AppData\Roaming\npm\node_modules\firebase-tools\lib\config.js:184:6)
+    at C:\Users\Garg Decipher\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\features\database.js:27:19
+    at tryCatch (C:\Users\Garg Decipher\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\rsvp\dist\rsvp.js:525:12)
+    at invokeCallback (C:\Users\Garg Decipher\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\rsvp\dist\rsvp.js:538:13)
+    at C:\Users\Garg Decipher\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\rsvp\dist\rsvp.js:606:14
+    at flush (C:\Users\Garg Decipher\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\rsvp\dist\rsvp.js:2415:5)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2017-09-04T05:43:08.529Z] ----------------------------------------------------------------------
+[debug] [2017-09-04T05:43:08.533Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Garg Decipher\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase init
+[debug] [2017-09-04T05:43:08.533Z] CLI Version:   3.10.0
+[debug] [2017-09-04T05:43:08.533Z] Platform:      win32
+[debug] [2017-09-04T05:43:08.533Z] Node Version:  v7.6.0
+[debug] [2017-09-04T05:43:08.533Z] Time:          Mon Sep 04 2017 11:13:08 GMT+0530 (India Standard Time)
+[debug] [2017-09-04T05:43:08.533Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-09-04T05:43:08.553Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
+[debug] [2017-09-04T05:43:08.553Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Server\projects\HomeopathyLabs
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2017-09-04T05:43:13.107Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects  
+ Mon Sep 04 2017 11:13:13 GMT+0530 (India Standard Time)
+[debug] [2017-09-04T05:43:14.424Z] <<< HTTP RESPONSE 200
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2017-09-04T05:43:33.294Z] >>> HTTP REQUEST GET https://www.gstatic.com/firebasejs/releases.json  
+ Mon Sep 04 2017 11:13:33 GMT+0530 (India Standard Time)
+[debug] [2017-09-04T05:43:33.873Z] Error: read ECONNRESET
+    at exports._errnoException (util.js:1028:11)
+    at TLSWrap.onread (net.js:572:26)
+[error] 
+[error] Error: Server Error. read ECONNRESET
+[debug] [2017-09-04T05:43:43.521Z] ----------------------------------------------------------------------
+[debug] [2017-09-04T05:43:43.525Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Garg Decipher\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase init
+[debug] [2017-09-04T05:43:43.525Z] CLI Version:   3.10.0
+[debug] [2017-09-04T05:43:43.525Z] Platform:      win32
+[debug] [2017-09-04T05:43:43.525Z] Node Version:  v7.6.0
+[debug] [2017-09-04T05:43:43.525Z] Time:          Mon Sep 04 2017 11:13:43 GMT+0530 (India Standard Time)
+[debug] [2017-09-04T05:43:43.525Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-09-04T05:43:43.537Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
+[debug] [2017-09-04T05:43:43.537Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Server\projects\HomeopathyLabs
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2017-09-04T05:43:49.785Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects  
+ Mon Sep 04 2017 11:13:49 GMT+0530 (India Standard Time)
+[debug] [2017-09-04T05:43:51.062Z] <<< HTTP RESPONSE 200
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[info] +  Wrote public/404.html
+[debug] [2017-09-04T05:44:03.128Z] >>> HTTP REQUEST GET https://www.gstatic.com/firebasejs/releases.json  
+ Mon Sep 04 2017 11:14:03 GMT+0530 (India Standard Time)
+[debug] [2017-09-04T05:44:03.662Z] Error: read ECONNRESET
+    at exports._errnoException (util.js:1028:11)
+    at TLSWrap.onread (net.js:572:26)
+[error] 
+[error] Error: Server Error. read ECONNRESET

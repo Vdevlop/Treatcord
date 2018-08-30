@@ -7,13 +7,11 @@ app.controller('cardsCtrl',function($rootScope, $document,$scope,$timeout,$http,
     
     
     
-    
-       const remote=require('electron').remote;
-        const ipcRenderer =require('electron').ipcRenderer;
+    var electron=require('electron')
+       const remote=electron.remote;
+        const ipcRenderer =electron.ipcRenderer;
     ipcRenderer.send('selectPort');
     ipcRenderer.on('portSelected', function(event,arg){
-          //alert('yeah!'+arg+'!Sdsfa');
-          //alert(JSON.stringify(PatientBuffer)+'asd');
           PatientBuffer.port = arg;
           PatientBuffer.refreshCards();
     });
