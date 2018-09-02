@@ -1,2 +1,2 @@
-# Homeopathy Labs, its just the begining :)
+# Homeopathy Labs
 
