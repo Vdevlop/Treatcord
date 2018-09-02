@@ -1,2 +1,3 @@
-# Homeopathy Labs
+# TreatCord
+# Desktop Application to manage patients records.
 
